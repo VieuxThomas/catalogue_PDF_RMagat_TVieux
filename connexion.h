@@ -19,6 +19,7 @@ private:
     QSqlDatabase * maBase;
     Ui::MainWindow *ui;
 public:
+    connexion();
     void connectionALaBase();
 
 };

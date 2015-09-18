@@ -2,7 +2,6 @@
 #define PDF_H
 
 #include <QString>
-#include <QMessageBox>
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlRecord>

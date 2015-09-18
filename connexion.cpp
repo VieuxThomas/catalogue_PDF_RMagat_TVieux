@@ -4,9 +4,14 @@
 #include <iostream>
 
 using namespace std;
-void connection::connection()
+
+connexion::connexion()
 {
-    ui->setupUi(this);
+
+}
+
+void connexion::connectionALaBase()
+{
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     maBase=new QSqlDatabase(db);
     maBase->setHostName("localhost");
@@ -16,11 +21,11 @@ void connection::connection()
          bool ok = maBase->open();
          if(!ok)
          {
-             QMessageBox::warning(this,"New World BackOffice","la connexion a la base de donnée a echouer \n Veuillez verifier que le service mysql est lancer sur localhost",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok);
+             cout<<"New World BackOffice, la connexion a la base de donnee a echouer \n Veuillez verifier que le service mysql est lancer sur localhost";
          }
          else
          {
-             QMessageBox::warning(this,"connexion établie",QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok);
+             cout<<"connexion etablie";
          }
 
 }
