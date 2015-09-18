@@ -2,10 +2,15 @@
 #include <QtGui/QPrinter>
 #include <QtGui/QPainter>
 #include "pdf.h"
+#include "connexion.h"
 int main(int argc, char *argv[])
 {
+
     QApplication a(argc, argv);
+
     QPrinter printer(QPrinter::HighResolution);
+    connexion maConnexion;
+    maConnexion.connexionALaBase();
     printer.setFullPage(QPrinter::A4);
     printer.setOutputFormat(QPrinter::NativeFormat);
     printer.setOutputFileName("catalogue.pdf");
@@ -16,4 +21,5 @@ int main(int argc, char *argv[])
     painter.end();
     return 0;
 }
+
 

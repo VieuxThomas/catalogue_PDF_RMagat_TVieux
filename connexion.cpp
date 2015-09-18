@@ -10,7 +10,7 @@ connexion::connexion()
 
 }
 
-void connexion::connectionALaBase()
+void connexion::connexionALaBase()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     maBase=new QSqlDatabase(db);

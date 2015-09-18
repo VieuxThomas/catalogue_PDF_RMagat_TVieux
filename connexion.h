@@ -20,7 +20,7 @@ private:
     Ui::MainWindow *ui;
 public:
     connexion();
-    void connectionALaBase();
+    void connexionALaBase();
 
 };
 
