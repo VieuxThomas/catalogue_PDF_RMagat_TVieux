@@ -18,15 +18,12 @@ int main(int argc, char *argv[])
     painter.begin(&printer);
     painter.setFont(QFont("Tahoma",30));
     QString nomPdf = "Catalogue New World";
-    painter.drawText(300,900,nomPdf);
-    painter.end();
-
-    QPainter painter2;
-    painter2.begin(&printer);
-    painter2.setFont(QFont("Tahoma",15));
+    painter.drawText(300,100,nomPdf);
+    painter.setFont(QFont("Tahoma",15));
     QString resum = "Votre catalogue de produits.";
-    painter2.drawText(300,1200,resum);
-    painter2.end();
+    painter.drawText(300,400,resum);
+    //impression
+    painter.end();
     return 0;
 }
 
