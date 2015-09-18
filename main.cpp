@@ -17,7 +17,8 @@ int main(int argc, char *argv[])
     QPainter painter;
     painter.begin(&printer);
     painter.setFont(QFont("Tahoma",8));
-    painter.drawText(200,200,"HELOOOO");
+    QString nomPdf = "Catalogue New World";
+    painter.drawText(300,900,nomPdf);
     painter.end();
     return 0;
 }
