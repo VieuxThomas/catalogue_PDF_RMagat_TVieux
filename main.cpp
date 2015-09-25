@@ -37,13 +37,13 @@ int main(int argc, char *argv[])
     QPixmap logo("logo.jpg");
     painter.drawPixmap(7600,10,1500,1500,logo);
 
-
-    //Liste des produits du catalogue
-
-
     //impression
     painter.end();
     return 0;
+
+    //affichage des lots de la base de donnée
+
+
 }
 
 
