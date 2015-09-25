@@ -47,8 +47,8 @@ void connexion::connexionALaBase()
              QString CP=requeteUtilisateur.value(2).toString();
 
              QTextStream out(stdout);
-             out << QString(noUtil)<<endl;
-             out << QString(CP)<<endl;
+             out <<"Nom : "<< QString(noUtil)<<endl;
+             out <<"Prenom : "<< QString(CP)<<endl;
 
              QSqlQuery nbFav;
              nbFav.prepare("select count(*) from QAO where noUtil="+QString::number(compteur)+"");
@@ -57,31 +57,36 @@ void connexion::connexionALaBase()
              int nbFavo=nbFav.value(0).toInt();
 
 
-             for (int compteur1=0;compteur1<nbFavo;compteur1++)
+
+             for (int compteur1=1;compteur1<nbFavo+1;compteur1++)
              {
 
                  QSqlQuery QAO;
-                 QAO.prepare("select noPDV from QAO where noUtil="+QString::number(compteur)+"");
+                 QAO.prepare("select noPDV from QAO where noUtil="+QString::number(compteur)+" limit "+QString::number(compteur1)+"");
                  QAO.exec();
+                 QAO.last();
 
-                 if (compteur1==0)
-                 {
-                 QAO.first();
-                 }
-                 if  (compteur1!=0)
-                 {
-                     QAO.next();
-                 }
                  int nb=QAO.value(0).toInt();
 
-                 cout<<nb<<endl;
+
+                 QSqlQuery nomMag;
+                 nomMag.prepare("select libelle from pointDeVente where no="+QString::number(nb)+"");
+                 nomMag.exec();
+                 nomMag.first();
+                 QString nomMagasin=nomMag.value(0).toString();
+
+                 out<<"Magasin n°"<<compteur1<<" : "<<QString(nomMagasin)<<endl;
 
              }
+             out<<endl;
+             out<<endl;
 
 
 
 
             }
+
+
 
          }
 
