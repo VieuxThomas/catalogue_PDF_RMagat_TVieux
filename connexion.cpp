@@ -48,7 +48,7 @@ void connexion::connexionALaBase()
 
              QTextStream out(stdout);
              out <<"Nom : "<< QString(noUtil)<<endl;
-             out <<"Prenom : "<< QString(CP)<<endl;
+             out <<"Code Postal : "<< QString(CP)<<endl;
 
              QSqlQuery nbFav;
              nbFav.prepare("select count(*) from QAO where noUtil="+QString::number(compteur)+"");
@@ -70,12 +70,41 @@ void connexion::connexionALaBase()
 
 
                  QSqlQuery nomMag;
-                 nomMag.prepare("select libelle from pointDeVente where no="+QString::number(nb)+"");
+                 nomMag.prepare("select libelle,no from pointDeVente where no="+QString::number(nb)+"");
                  nomMag.exec();
                  nomMag.first();
+                 int noMag=nomMag.value(1).toInt();
                  QString nomMagasin=nomMag.value(0).toString();
 
                  out<<"Magasin n°"<<compteur1<<" : "<<QString(nomMagasin)<<endl;
+
+                 QSqlQuery nbprod;
+                 nbprod.prepare("select count(*) from QVO where noPDV="+QString::number(noMag));
+                 nbprod.exec();
+                 nbprod.first();
+                 int nbprod1=nbprod.value(0).toInt();
+
+
+                 for (int compteur2=1;compteur2<nbprod1+1;compteur2++)
+                 {
+                    QSqlQuery QVO;
+                    QVO.prepare("select noProd from QVO where noPDV="+QString::number(compteur1-1)+" limit "+QString::number(compteur2));
+                    QVO.exec();
+                    QVO.last();
+                    int nb1=QVO.value(0).toInt();
+
+                    QSqlQuery Produit;
+                    Produit.prepare("select libelle from produit where no="+QString::number(nb1));
+                    Produit.exec();
+                    Produit.first();
+                    QString libProd=Produit.value(0).toString();
+
+                    out<<libProd<<endl;
+
+
+                 }
+
+
 
              }
              out<<endl;
